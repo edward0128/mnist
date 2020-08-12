@@ -5,7 +5,7 @@
 #echo edward:$1 | chpasswd
 # change ssh password
 #touch /home/$1
-export MODEL_NAME="good_model"
+export MODEL_NAME="bad_model"
 echo root:$PASSWORD | chpasswd
 
 # Start the first process
