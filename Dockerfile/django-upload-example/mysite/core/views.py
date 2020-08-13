@@ -13,7 +13,7 @@ class Home(TemplateView):
 
 
 def upload(request):
-    model_name = os.environ['MODEL_NAME']
+    model_name = "model"
     #model_name="bad_model"
     context = {}
     if request.method == 'POST':
@@ -21,7 +21,7 @@ def upload(request):
         fs = FileSystemStorage()
         name = fs.save(uploaded_file.name, uploaded_file)
         img_path = fs.url(name)
-        batcmd="python /mnt/"
+        batcmd="python /tf/"
         batcmd+=model_name
         batcmd+="/number.py "
         batcmd+="/tf/django-upload-example"
