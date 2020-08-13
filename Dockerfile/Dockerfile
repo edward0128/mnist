@@ -1,5 +1,5 @@
 #FROM yusongwang1991/mnist:latest
-FROM yusongwang1991/mnist:latest
+FROM yusongwang1991/mnist:v1
 RUN rm -rf django-upload-example
 COPY django-upload-example django-upload-example 
 COPY run_jupyter.sh run_jupyter.sh
