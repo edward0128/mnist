@@ -21,9 +21,9 @@ def upload(request):
         fs = FileSystemStorage()
         name = fs.save(uploaded_file.name, uploaded_file)
         img_path = fs.url(name)
-        batcmd="python /tf/"
-        batcmd+=model_name
-        batcmd+="/number.py "
+        batcmd="python /tf/number.py "
+        #batcmd+=model_name
+        #batcmd+="/number.py "
         batcmd+="/tf/django-upload-example"
         batcmd+=img_path
         result = subprocess.check_output(batcmd, shell=True)
