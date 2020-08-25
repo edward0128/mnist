@@ -87,7 +87,7 @@ from datetime import datetime
 from tensorflow import keras
 
 # 定義訓練方式 
-path='/home/mnist/model5'
+path='./model9527'
 if not os.path.isdir(path):
  os.mkdir(path)
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
