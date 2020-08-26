@@ -11,6 +11,17 @@
 # ## STEP1. 資料讀取與轉換 
 
 # In[1]:
+import tensorflow as tf
+import sys
+print(sys.argv[1])
+
+
+# 只使用 30% 的 GPU 記憶體
+gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.3)
+sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
+
+# 設定 Keras 使用的 TensorFlow Session
+tf.keras.backend.set_session(sess)
 
 
 from keras.datasets import mnist  
@@ -87,7 +98,7 @@ from datetime import datetime
 from tensorflow import keras
 
 # 定義訓練方式 
-path='./model9527'
+path="./"+sys.argv[1]
 if not os.path.isdir(path):
  os.mkdir(path)
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -106,9 +117,11 @@ callbacks_list =[ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_be
                                   
                  
 
+print(sys.argv[2])
 
+arg_epochs=int(sys.argv[2])
 #train_history = model.fit(x=X_Train4D_norm,y=y_TrainOneHot, validation_split=0.2,epochs=10, batch_size=300, callbacks=callbacks_list,verbose=1) 
-train_history = model.fit(x=X_Train4D_norm,y=y_TrainOneHot,epochs=15, batch_size=300,verbose=0,validation_data=(X_Test4D_norm, y_TestOneHot),callbacks=callbacks_list) 
+train_history = model.fit(x=X_Train4D_norm,y=y_TrainOneHot,epochs=arg_epochs, batch_size=300,verbose=0,validation_data=(X_Test4D_norm, y_TestOneHot),callbacks=callbacks_list) 
 # 開始訓練  
   
 model.save( path+'/model.h5')
